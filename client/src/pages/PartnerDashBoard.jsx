@@ -8,5 +8,4 @@ const PartnerDashboard = () => {
   )
 }
 
-
-export default PartnerDashboard
+export default PartnerDashboard;
