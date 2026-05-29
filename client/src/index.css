@@ -1,0 +1,26 @@
+@import "tailwindcss";
+
+*{
+     box-sizing: border-box;
+}
+
+@font-face {
+     font-family: orbitron-black;
+     src: url('./assets/fonts/orbitron/Orbitron\ Black.otf');
+}
+
+
+@font-face {
+     font-family: orbitron-light;
+     src: url('./assets/fonts/orbitron/Orbitron\ Light.otf');
+}
+
+@font-face {
+     font-family: orbitron-medium;
+     src: url('./assets/fonts/orbitron/Orbitron\ Medium.otf');
+}
+
+@font-face {
+     font-family: orbitron-bold;
+     src: url('./assets/fonts/orbitron/Orbitron\ Bold.otf');
+}
