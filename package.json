@@ -9,9 +9,9 @@
   "scripts": {
     "dev": "nodemon ./server/index.js",
     "server": "node ./server/index.js",
-    "buildServer": "npm install",
+    "installServer": "npm install",
     "buildClient": "npm run build --prefix client",
-    "build": "npm run buildClient && npm run buildServer",
+    "build": "npm install --prefix client && npm run buildClient && npm run installServer",
     "client": "npm run dev",
     "production": "npm run build && npm run server"
   },
