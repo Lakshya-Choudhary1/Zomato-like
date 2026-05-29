@@ -13,7 +13,7 @@
     "buildClient": "npm run build --prefix client",
     "build": "npm install --prefix client && npm run buildClient && npm run installServer",
     "client": "npm run dev",
-    "production": "npm run build && npm run server"
+    "production": " npm run server"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
