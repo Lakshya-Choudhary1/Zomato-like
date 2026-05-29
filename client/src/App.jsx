@@ -235,11 +235,12 @@ const App = () => {
         }
       />
 
+
       <Route
         path="/partner/dashboard"
         element={
           <PartnerProtectedRoute>
-            <PartnerDashboard />
+            <PartnerDashboard /> 
           </PartnerProtectedRoute>
         }
       />
