@@ -20,7 +20,7 @@ const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, BCRYPT_SALT_ROUND, NODE_ENV } =
 const BASE_URL =
   NODE_ENV === "development"
     ? "http://localhost:3000"
-    : "https://api.yourdomain.com";
+    : "https://zomato-like-d4bh.onrender.com";
 
 const userCallbackURL = `${BASE_URL}/api/user/google/callback`;
 
