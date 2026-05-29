@@ -71,11 +71,7 @@ app.use(
 
 app.use(passport.initialize());
 
-/* =========================================
-   STATIC FILES
-========================================= */
 
-app.use(express.static(resolve(__dirname, "../public")));
 
 /* =========================================
    API ROUTES
@@ -88,6 +84,11 @@ app.use("/api", api);
 ========================================= */
 
 if (config.NODE_ENV === "production") {
+  /* =========================================
+   STATIC FILES
+  ========================================= */
+
+  app.use(express.static(resolve(__dirname, "../public")));
   app.get(/.*/, (req, res) => {
     return res.sendFile(join(__dirname, "../public/index.html"));
   });
