@@ -8,4 +8,5 @@ const PartnerDashboard = () => {
   )
 }
 
+
 export default PartnerDashboard
