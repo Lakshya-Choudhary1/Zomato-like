@@ -115,7 +115,7 @@ export const getFoodFeed = async (req, res) => {
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
-        .select("recipeVideo description tags createdAt")
+        .select("recipeName recipeVideo description tags createdAt")
         .lean(),
 
       foodModel.countDocuments(query),

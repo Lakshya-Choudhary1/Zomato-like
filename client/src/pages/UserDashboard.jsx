@@ -127,7 +127,6 @@ const UserDashboard = () => {
           ) : (
             foods?.map((e, idx) => {
               const isLast = idx === foods.length - 1;
-
               return (
                 <section
                   key={e._id || idx}
@@ -148,8 +147,8 @@ const UserDashboard = () => {
 
                   {/* CONTENT */}
                   <div className="absolute flex flex-col bottom-6 left-4 right-4">
-                    <p className="text-white text-md mb-1 ">{e.recipeName}</p>
-                    <p className="text-white text-sm mb-4 line-clamp-2">
+                    <p className="text-white text-2xl font-semibold  mb-1 ">{e.recipeName}</p>
+                    <p className="text-white/70 text-sm mb-4 line-clamp-2">
                       {e.description}
                     </p>
 
