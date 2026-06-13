@@ -1,5 +1,9 @@
 import React from "react";
 
+import {ArrowLeft} from "lucide-react";
+import { Link } from "react-router-dom";
+
+
 const LoginForm = ({
   email,
   password,
@@ -33,6 +37,10 @@ const LoginForm = ({
           p-8
         "
       >
+        {/* back btn */}
+        <Link to="/">
+          <ArrowLeft className="text-white" />
+        </Link>
         {/* Heading */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl  text-white font-bold ">

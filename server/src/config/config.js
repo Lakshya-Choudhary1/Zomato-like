@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+
 const config = {
   NODE_ENV: process.env.NODE_ENV || "development",
 
@@ -36,5 +37,10 @@ const config = {
   NODEMAILER_EMAIL: process.env.NODEMAILER_EMAIL,
   NODEMAILER_EMAIL_PASSWORD: process.env.NODEMAILER_EMAIL_PASSWORD,
 };
+
+export const BASE_URL = config.NODE_ENV == "development"
+        ? "http://localhost:5173"
+        : "https://zomato-like-d4bh.onrender.com";;
+
 
 export default config;

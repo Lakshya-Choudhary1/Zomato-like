@@ -1,5 +1,8 @@
 import React from "react";
 
+import {ArrowLeft} from "lucide-react";
+import { Link } from "react-router-dom";
+
 const EmailVerificationForm = ({
   handleSubmit,
   verificationToken,
@@ -29,6 +32,9 @@ const EmailVerificationForm = ({
           p-8
         "
       >
+        <Link to="/">
+          <ArrowLeft className="text-white" />
+        </Link>
         {/* Heading */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold tracking-wide text-white">

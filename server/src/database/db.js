@@ -3,34 +3,29 @@ import config from "../config/config.js";
 
 const { MONGO_URI } = config;
 
-// ======================================
-// MONGOOSE CONNECTION EVENTS
-// ======================================
-
+// Connection events
 mongoose.connection.once("open", () => {
   console.log("MongoDB connection established successfully");
 });
 
 mongoose.connection.on("error", (error) => {
-  console.log("MongoDB connection error:", error.message);
+  console.error("MongoDB connection error:", error.message);
 });
 
 mongoose.connection.on("disconnected", () => {
   console.log("MongoDB disconnected");
 });
 
-// ======================================
-// DATABASE INITIALIZER
-// ======================================
-
+// Database initializer
 const db_init = async () => {
   try {
-    await mongoose.connect(MONGO_URI, {
-      autoIndex: true,
-    });
-  } catch (error) {
-    console.log("Failed to connect MongoDB:", error.message);
+    await mongoose.connect(MONGO_URI);
 
+    console.log(
+      `MongoDB connected: ${mongoose.connection.host}/${mongoose.connection.name}`
+    );
+  } catch (error) {
+    console.error("Failed to connect MongoDB:", error.message);
     process.exit(1);
   }
 };

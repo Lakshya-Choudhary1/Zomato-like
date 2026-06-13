@@ -1,5 +1,8 @@
 import React from "react";
 
+import {ArrowLeft} from "lucide-react";
+import { Link } from "react-router-dom";
+
 const SignupForm = ({
   fullName,
   email,
@@ -34,6 +37,10 @@ const SignupForm = ({
           p-8
         "
       >
+        <Link to="/">
+          <ArrowLeft className="text-white" />
+        </Link>
+
         <h1
           className="
             text-4xl

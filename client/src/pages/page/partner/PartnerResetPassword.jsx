@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate} from 'react-router-dom';
 
 import ResetPasswordForm from '../../components/ResetPasswordForm.jsx';
 import usePartnerStore from "../../../store/partner.store.js"
@@ -10,6 +10,8 @@ const PartnerResetPassword = () => {
   const { isLoading , resetPassword} = usePartnerStore();
 
   const {resetPasswordToken}  = useParams();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async(e) => {
     e.preventDefault();
@@ -23,6 +25,8 @@ const PartnerResetPassword = () => {
       return;
     }
     await resetPassword({password, resetPasswordToken});
+    setPassword("");
+    navigate("/partner/login")
   };
 
   return (

@@ -13,16 +13,45 @@ const foodStore = create((set, get) => ({
   isLoading: false,
 
   // ================= CREATE FOOD =================
-  createFood: async (formData) => {
+  createFood: async ({ recipeName, description, tags, file }) => {
     set({ isLoading: true });
-
+    console.log("Creating food with data:", { recipeName,
+      description,
+      tags,
+      file,
+    });
     try {
-      const axiosResponse = await axiosInstance.post("/api/food", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
+      // 1. Upload video to Cloudinary
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", "zomoto_upload_reels");
+
+      const response = await fetch(
+        "https://api.cloudinary.com/v1_1/dgozd3fnf/video/upload",
+        {
+          method: "POST",
+          body: formData,
         },
+      );
+
+      const data = await response.json();
+
+      // 2. Proper error handling
+      if (!response.ok || !data.secure_url) {
+        throw new Error(data?.error?.message || "Video upload failed");
+      }
+
+      const recipeVideo = data.secure_url;
+
+      // 3. Send to backend
+      const axiosResponse = await axiosInstance.post("/api/food", {
+        recipeName,
+        description,
+        tags,
+        recipeVideo,
       });
 
+      // 4. Update state
       set((state) => ({
         partnerFoods: [axiosResponse.data.food, ...state.partnerFoods],
       }));
@@ -32,17 +61,12 @@ const foodStore = create((set, get) => ({
       return axiosResponse.data.food;
     } catch (error) {
       console.log(error);
-
-      toast.error(error?.response?.data?.message || "Failed to create food");
-
+      toast.error(error?.message || "Failed to create food");
       return null;
     } finally {
-      set({
-        isLoading: false,
-      });
+      set({ isLoading: false });
     }
   },
-
   // ================= GET PARTNER FOODS =================
   getPartnerFoods: async () => {
     set({ isLoading: true });
@@ -90,29 +114,25 @@ const foodStore = create((set, get) => ({
   },
 
   // ================= GET FOOD FEED =================
-  getFoodFeed: async ({ tag = "all", page = 1, limit = 10 } = {}) => {
+  getFoodFeed: async ({ tag = "all", page = 1, limit = 10 }) => {
     set({ isLoading: true });
 
     try {
-      const axiosResponse = await axiosInstance.get(
+      const res = await axiosInstance.get(
         `/api/food/feed?tag=${tag}&page=${page}&limit=${limit}`,
       );
 
-      set({
-        foods: axiosResponse.data.foods,
+      const newFoods = res.data.foods;
 
-        pagination: axiosResponse.data.pagination,
-      });
+      set((state) => ({
+        foods: page === 1 ? newFoods : [...state.foods, ...newFoods],
+
+        pagination: res.data.pagination,
+      }));
     } catch (error) {
       console.log(error);
-
-      toast.error(
-        error?.response?.data?.message || "Failed to fetch food feed",
-      );
     } finally {
-      set({
-        isLoading: false,
-      });
+      set({ isLoading: false });
     }
   },
 

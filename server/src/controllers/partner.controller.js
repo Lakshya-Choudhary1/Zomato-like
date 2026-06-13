@@ -3,7 +3,7 @@ import crypto from "crypto";
 import validator from "validator";
 
 import partnerModel from "../models/partner.model.js";
-import config from "../config/config.js";
+import config,{BASE_URL} from "../config/config.js";
 
 import partnerCreateTokenAndSetCookie from "../utils/partnerCreateTokenAndSetCookie.js";
 import createVerificationToken from "../utils/createVerificationToken.js";
@@ -412,14 +412,9 @@ const forgotPassword = async (req, res) => {
 
     await partner.save();
 
-    // TODO:
-    // Send rawResetPasswordToken in email
-    const BASE_URL =
-      NODE_ENV === "development"
-        ? "http://localhost:5173"
-        : "<-- TODO SETUP WHEN DEPLOY";
 
-    const resetPasswordLink = `${BASE_URL}/reset-password/${rawResetPasswordToken}`;
+    const resetPasswordLink = `${BASE_URL}/partner/reset-password/${rawResetPasswordToken}`;
+    console.log(resetPasswordLink);
 
     await sendForgotPasswordEmail(partner.email, resetPasswordLink);
 

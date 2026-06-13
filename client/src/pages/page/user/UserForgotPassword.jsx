@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import useUserStore from "../../../store/user.store.js";
 import ForgotPasswordForm from "../../components/ForgotPasswordForm.jsx";
@@ -8,10 +9,14 @@ const UserForgotPassword = () => {
 
   const { forgotPassword , isLoading} = useUserStore();
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     await forgotPassword({ email });
+
+    navigate("/");
   };
 
   return (

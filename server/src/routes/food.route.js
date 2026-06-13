@@ -33,7 +33,6 @@ foodRouter.get("/test", (req, res) => {
 foodRouter.post(
      "/",
      verifyPartnerRoute,
-     upload.single("recipeVideo"),
      createFood
 );
 

@@ -34,26 +34,18 @@ const ForgotPasswordForm = ({ email, setEmail, handleSubmit, isLoading }) => {
         </div>
 
         {/* Heading */}
-        <div className="mb-8 text-center">
+        <div className=" text-center">
           <h1 className="text-4xl font-bold tracking-wide text-white">
             Forgot Password
           </h1>
-
-          <p className="mt-3 text-sm leading-relaxed text-gray-400">
-            Enter your email address and we’ll send you a password reset link
-          </p>
         </div>
+
+        <div className="h-px w-full bg-white/10 my-4"></div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Email Input */}
           <div className="flex flex-col gap-2">
-            <label
-              htmlFor="email"
-              className="text-sm tracking-wide text-gray-300"
-            >
-              Email Address
-            </label>
 
             <input
               type="email"

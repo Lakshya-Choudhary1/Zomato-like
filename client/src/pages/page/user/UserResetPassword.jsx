@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate } from 'react-router-dom';
 
 import ResetPasswordForm from '../../components/ResetPasswordForm.jsx';
 import useUserStore from "../../../store/user.store.js"
@@ -24,6 +24,8 @@ const UserResetPassword = () => {
     }
     console.log({password, resetPasswordToken});
     await resetPassword({password, resetPasswordToken});
+    setPassword("");
+    navigate("/user/login");
   };
 
   return (

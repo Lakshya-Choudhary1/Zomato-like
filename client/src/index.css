@@ -24,3 +24,11 @@
      font-family: orbitron-bold;
      src: url('./assets/fonts/orbitron/Orbitron\ Bold.otf');
 }
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}

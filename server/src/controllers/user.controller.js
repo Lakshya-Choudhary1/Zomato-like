@@ -3,7 +3,7 @@ import crypto from "crypto";
 import validator from "validator";
 
 import userModel from "../models/user.model.js";
-import config from "../config/config.js";
+import config,{BASE_URL} from "../config/config.js";
 
 import userCreateTokenAndSetCookie from "../utils/userCreateTokenAndSetCookie.js";
 import createVerificationToken from "../utils/createVerificationToken.js";
@@ -14,6 +14,7 @@ import { uploadImageToCloudinary } from "../lib/uploadToCloudinary.js";
 import { sendVerificationEmail, sendForgotPasswordEmail } from "../lib/mail.js";
 
 const { BCRYPT_SALT_ROUND, JWT_USER_TOKEN_NAME, NODE_ENV } = config;
+
 
 /* =====================================
    HELPER
@@ -438,14 +439,11 @@ const forgotPassword = async (req, res) => {
 
     await user.save();
 
-    const BASE_URL =
-      NODE_ENV === "development"
-        ? "http://localhost:5173"
-        : "<-- TODO SETUP WHEN DEPLOY -->";
 
-    const resetPasswordLink = `${BASE_URL}/reset-password/${rawResetPasswordToken}`;
 
-    await sendForgotPasswordEmail(user.email, user.fullName, resetPasswordLink);
+    const resetPasswordLink = `${BASE_URL}/user/reset-password/${rawResetPasswordToken}`;
+
+    await sendForgotPasswordEmail(user.email, resetPasswordLink);
 
     return res.status(200).json({
       success: true,
