@@ -147,7 +147,7 @@ const UserDashboard = () => {
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
                   {/* CONTENT */}
-                  <div className="absolute bottom-6 left-4 right-4">
+                  <div className="absolute flex flex-col bottom-6 left-4 right-4">
                     <p className="text-white text-md mb-1 ">{e.recipeName}</p>
                     <p className="text-white text-sm mb-4 line-clamp-2">
                       {e.description}
