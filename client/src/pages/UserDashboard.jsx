@@ -66,19 +66,16 @@ const UserDashboard = () => {
 
       if (node) observerRef.current.observe(node);
     },
-    [page, pagination]
+    [page, pagination],
   );
 
   return (
     <div className="min-h-screen w-full bg-black flex justify-center">
-      
       {/* MOBILE FRAME */}
       <div className="relative w-full max-w-md h-screen overflow-hidden bg-black">
-
         {/* ================= NAVBAR ================= */}
         <header className="absolute top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
           <div className="flex items-center justify-between px-4 py-3">
-            
             <h1 className="text-lg font-bold text-white">
               Food<span className="text-red-500">Reels</span>
             </h1>
@@ -89,7 +86,6 @@ const UserDashboard = () => {
             >
               Logout
             </button>
-
           </div>
         </header>
 
@@ -124,44 +120,47 @@ const UserDashboard = () => {
 
         {/* ================= FEED ================= */}
         <main className="h-screen scrollbar-none overflow-y-scroll snap-y snap-mandatory">
+          {foods.length == 0 ? (
+            <div className="relative h-screen w-full flex  items-center justify-center text-gray-500">
+              No more reels
+            </div>
+          ) : (
+            foods?.map((e, idx) => {
+              const isLast = idx === foods.length - 1;
 
-          {foods?.map((e, idx) => {
-            const isLast = idx === foods.length - 1;
+              return (
+                <section
+                  key={e._id || idx}
+                  ref={isLast ? lastFoodRef : null}
+                  className="relative h-screen w-full snap-start"
+                >
+                  <video
+                    src={e.recipeVideo}
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
 
-            return (
-              <section
-                key={e._id || idx}
-                ref={isLast ? lastFoodRef : null}
-                className="relative h-screen w-full snap-start"
-              >
-                <video
-                  src={e.recipeVideo}
-                  className="h-full w-full object-cover"
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                />
+                  {/* OVERLAY */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
-                {/* OVERLAY */}
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+                  {/* CONTENT */}
+                  <div className="absolute bottom-6 left-4 right-4">
+                    <p className="text-white text-md mb-1 ">{e.recipeName}</p>
+                    <p className="text-white text-sm mb-4 line-clamp-2">
+                      {e.description}
+                    </p>
 
-                {/* CONTENT */}
-                <div className="absolute bottom-6 left-4 right-4">
-                  <p className="text-white text-md mb-1 ">
-                    {e.recipeName}
-                  </p>
-                  <p className="text-white text-sm mb-4 line-clamp-2">
-                    {e.description}
-                  </p>
-
-                  <button className="w-full py-3 rounded-2xl bg-red-500/90 text-white font-semibold">
-                    Visit Store
-                  </button>
-                </div>
-              </section>
-            );
-          })}
+                    <button className="w-full py-3 rounded-2xl bg-red-500/90 text-white font-semibold">
+                      Visit Store
+                    </button>
+                  </div>
+                </section>
+              );
+            })
+          )}
 
           {/* END */}
           {!pagination?.hasNextPage && foods?.length > 0 && (
@@ -169,9 +168,7 @@ const UserDashboard = () => {
               No more reels
             </div>
           )}
-
         </main>
-
       </div>
     </div>
   );
