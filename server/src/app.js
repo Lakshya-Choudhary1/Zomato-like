@@ -39,6 +39,7 @@ app.use(
       objectSrc: ["'none'"],
       baseUri: ["'self'"],
       frameAncestors: ["'none'"],
+      videoSrc: ["'self'", "https://www.youtube.com", "https://cloudinary.com"],
     },
   })
 );
