@@ -148,6 +148,9 @@ const UserDashboard = () => {
 
                 {/* CONTENT */}
                 <div className="absolute bottom-6 left-4 right-4">
+                  <p className="text-white text-md mb-1 ">
+                    {e.recipeName}
+                  </p>
                   <p className="text-white text-sm mb-4 line-clamp-2">
                     {e.description}
                   </p>
