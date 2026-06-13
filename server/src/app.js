@@ -34,7 +34,7 @@ app.use(
       scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com", "data:"],
-      imgSrc: ["'self'", "data:", "blob:","https://images.unsplash.com"],
+      imgSrc: ["'self'", "data:", "blob:","https://images.unsplash.com","https://lh3.googleusercontent.com"],
       connectSrc: ["'self'", "http://localhost:3000", "http://localhost:5173", "ws://localhost:5173","https://api.cloudinary.com",
           "https://res.cloudinary.com"],
       objectSrc: ["'none'"],
