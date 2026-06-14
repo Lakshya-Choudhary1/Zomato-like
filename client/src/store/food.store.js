@@ -11,6 +11,7 @@ const foodStore = create((set, get) => ({
   selectedFood: null,
   pagination: null,
   isLoading: false,
+  
 
   // ================= CREATE FOOD =================
   createFood: async ({ recipeName, description, tags, file }) => {
@@ -68,11 +69,15 @@ const foodStore = create((set, get) => ({
     }
   },
   // ================= GET PARTNER FOODS =================
-  getPartnerFoods: async () => {
+  getPartnerFoods: async (partnerId) => {
     set({ isLoading: true });
 
     try {
-      const axiosResponse = await axiosInstance.get("/api/food/partner/videos");
+      const url = partnerId
+        ? `/api/food/partner/videos?id=${partnerId}`
+        : "/api/food/partner/videos";
+        
+      const axiosResponse = await axiosInstance.get(url);
 
       set({
         partnerFoods: axiosResponse.data.foodList,

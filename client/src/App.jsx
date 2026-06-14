@@ -4,6 +4,7 @@ import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 
 import userStore from "./store/user.store.js";
 import partnerStore from "./store/partner.store.js";
+import PartnerPage from "./pages/PartnerPage.jsx"
 
 
 // ================= COMPONENTS =================
@@ -266,7 +267,14 @@ const App = () => {
         }
       />
 
-        <Route path="/loading" element={<Loading />} />
+      <Route
+        path="/partner-page/:id"
+        element={
+          <PartnerPage/>
+        }
+      />
+
+      <Route path="/loading" element={<Loading />} />
       {/* ================= 404 ================= */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

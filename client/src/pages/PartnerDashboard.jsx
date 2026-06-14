@@ -279,7 +279,8 @@ const PartnerDashboard = () => {
             >
               <video
                 src={food.recipeVideo}
-                controls
+                autoPlay
+                muted
                 className="w-full h-64 object-cover"
               />
 

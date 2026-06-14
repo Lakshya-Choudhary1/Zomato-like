@@ -77,7 +77,7 @@ export const getPartnersVideo = async (req, res) => {
         message: "Unauthorized",
       });
     }
-
+git 
     const foodList = await foodModel
       .find({ partnerId })
       .sort({ createdAt: -1 })
@@ -115,7 +115,7 @@ export const getFoodFeed = async (req, res) => {
         .sort({ createdAt: -1 })
         .skip(skip)
         .limit(limit)
-        .select("recipeName recipeVideo description tags createdAt")
+        .select("recipeName partnerId _id recipeVideo description tags createdAt")
         .lean(),
 
       foodModel.countDocuments(query),

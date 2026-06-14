@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
+import { useNavigate , Link} from "react-router-dom";
+
 import useUserStore from "../store/user.store.js";
 import useFoodStore from "../store/food.store.js";
 
@@ -9,10 +11,14 @@ const UserDashboard = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [page, setPage] = useState(1);
 
+  const navigate = useNavigate();
+
   const observerRef = useRef(null);
 
   const { logout } = useUserStore();
   const { foods, getFoodFeed, pagination } = useFoodStore();
+
+
 
   // ================= LOGOUT =================
   const handleLogout = async () => {
@@ -152,9 +158,10 @@ const UserDashboard = () => {
                       {e.description}
                     </p>
 
-                    <button className="w-full py-3 rounded-2xl bg-red-500/90 text-white font-semibold">
+                    <Link  className="w-full py-3 rounded-2xl bg-red-500/90 text-white font-semibold text-center"
+                      to={`/partner-page/${e.partnerId}`}>
                       Visit Store
-                    </button>
+                    </Link>
                   </div>
                 </section>
               );
